@@ -21,7 +21,7 @@ const App = () => {
         {animeData.map((n, i) => (
           <div key={i}>
             <p>{n.title}</p>
-            <img src={n.images.webp.image_url} alt={n.title + " image"} className="anime-image" />
+            <a href={n.url} target="_blank" rel="noreferrer"><img src={n.images.webp.image_url} alt={n.title + " image"} className="anime-image" /></a>
           </div>
         ))}
       </div>
