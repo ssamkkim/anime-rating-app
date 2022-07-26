@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './App.scss';
 
 const App = () => {
+
   //state
   const [animeData, setAnimeData] = useState([]);
+  const [animeIndex, setAnimeIndex] = useState(0);
+  const [animeRatings, setAnimeRatings] = useState([]);
+
   //fetch animeData
   const fetchAnimeData = () => {
     fetch('https://api.jikan.moe/v4/anime')
@@ -11,20 +15,74 @@ const App = () => {
       .then(data => setAnimeData(data.data))
       .catch(error => console.log(error));
   };
+
   useEffect(() => {
     fetchAnimeData();
   }, []);
+
+  const displayAnime = () => {
+    let title = animeData[animeIndex].title;
+    let anchorHref = animeData[animeIndex].url;
+    let imgSrc = animeData[animeIndex].images.webp.image_url;
+    let imgAlt = animeData[animeIndex].title + " image"; 
+    return (
+      <div>
+        <p>{title}</p>
+        <a href={anchorHref} target="_blank" rel="noreferrer"><img src={imgSrc} alt={imgAlt} className="anime-image" /></a>
+      </div>
+    );    
+  }
+
+  const handleNext = () => {
+    animeIndex + 1 === animeData.length ? <h1>Finished</h1> : setAnimeIndex(animeIndex + 1);
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const newRating = {
+      title: animeData[animeIndex].title,
+      rating: e.target.rating.value,
+    }
+    setAnimeRatings(animeRatings => [...animeRatings, newRating]);
+    handleNext();
+    displayAnime();
+  }
+
+
   return (
     <div>
       <h2>Anime</h2>
-      <div id="anime-container">
+      {/* <div id="anime-container">
         {animeData.map((n, i) => (
           <div key={i}>
             <p>{n.title}</p>
             <a href={n.url} target="_blank" rel="noreferrer"><img src={n.images.webp.image_url} alt={n.title + " image"} className="anime-image" /></a>
           </div>
         ))}
-      </div>
+      </div> */}
+      {displayAnime()}
+      <form onSubmit={handleSubmit}>
+        <select name="rating" id="rating">
+          <option value="10">10</option>
+          <option value="9">9</option>
+          <option value="8">8</option>
+          <option value="7">7</option>
+          <option value="6">6</option>
+          <option value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+          <option value="1">1</option>
+        </select>
+        <input type="submit" />
+      </form>
+      <button onClick={handleNext}>Haven't Watched</button>
+      {animeRatings.map((n, i) => (
+        <span key={i}>
+          <p>{n.title}</p>
+          <p>{n.rating}</p>
+        </span>
+      ))}
     </div>
   );
 };
