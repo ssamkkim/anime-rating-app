@@ -21,20 +21,30 @@ const App = () => {
   }, []);
 
   const displayAnime = () => {
-    let title = animeData[animeIndex].title;
-    let anchorHref = animeData[animeIndex].url;
-    let imgSrc = animeData[animeIndex].images.webp.image_url;
-    let imgAlt = animeData[animeIndex].title + " image"; 
-    return (
-      <div>
-        <p>{title}</p>
-        <a href={anchorHref} target="_blank" rel="noreferrer"><img src={imgSrc} alt={imgAlt} className="anime-image" /></a>
-      </div>
-    );    
+    if(animeData[animeIndex] === undefined) {
+      return (
+        <h1>Loading...</h1>
+      )
+    } else {
+      let title = animeData[animeIndex].title;
+      let anchorHref = animeData[animeIndex].url;
+      let imgSrc = animeData[animeIndex].images.webp.image_url;
+      let imgAlt = animeData[animeIndex].title + " image"; 
+      return (
+        <div>
+          <p>{title}</p>
+          <a href={anchorHref} target="_blank" rel="noreferrer"><img src={imgSrc} alt={imgAlt} className="anime-image" /></a>
+        </div>
+      ); 
+    }
   }
 
-  const handleNext = () => {
-    animeIndex + 1 === animeData.length ? <h1>Finished</h1> : setAnimeIndex(animeIndex + 1);
+  const handleNext = e => {
+    animeIndex + 1 === animeData.length ? displayFinished() : setAnimeIndex(animeIndex + 1);
+  }
+  
+  const displayFinished = () => {
+    <h1>Finished</h1>
   }
 
   const handleSubmit = e => {
@@ -61,7 +71,8 @@ const App = () => {
         ))}
       </div> */}
       {displayAnime()}
-      <form onSubmit={handleSubmit}>
+      {displayFinished()}
+      <form onSubmit={handleSubmit} style={{display: 'inline'}}>
         <select name="rating" id="rating">
           <option value="10">10</option>
           <option value="9">9</option>
@@ -78,10 +89,9 @@ const App = () => {
       </form>
       <button onClick={handleNext}>Haven't Watched</button>
       {animeRatings.map((n, i) => (
-        <span key={i}>
-          <p>{n.title}</p>
-          <p>{n.rating}</p>
-        </span>
+        <div key={i}>
+          {n.title + " " + n.rating}
+        </div>
       ))}
     </div>
   );
