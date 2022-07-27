@@ -25,7 +25,12 @@ const App = () => {
       return (
         <h1>Loading...</h1>
       )
-    } else {
+    } else if(animeIndex + 1 === animeData.length) {
+      return (
+        <h1>Finished!</h1>
+      )
+    }
+      else {
       let currentAnime = animeData[animeIndex];
       let title = currentAnime.title;
       let anchorHref = currentAnime.url;
@@ -41,11 +46,7 @@ const App = () => {
   }
 
   const handleNext = e => {
-    animeIndex + 1 === animeData.length ? displayFinished() : setAnimeIndex(animeIndex + 1);
-  }
-  
-  const displayFinished = () => {
-    <h1>Finished</h1>
+    animeIndex + 1 === animeData.length ? setAnimeIndex(animeIndex) : setAnimeIndex(animeIndex + 1);
   }
 
   const handleSubmit = e => {
@@ -72,7 +73,6 @@ const App = () => {
         ))}
       </div> */}
       {displayAnime()}
-      {displayFinished()}
       <form onSubmit={handleSubmit} style={{display: 'inline'}}>
         <select name="rating" id="rating">
           <option value="10">10</option>
