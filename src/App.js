@@ -26,10 +26,11 @@ const App = () => {
         <h1>Loading...</h1>
       )
     } else {
-      let title = animeData[animeIndex].title;
-      let anchorHref = animeData[animeIndex].url;
-      let imgSrc = animeData[animeIndex].images.webp.image_url;
-      let imgAlt = animeData[animeIndex].title + " image"; 
+      let currentAnime = animeData[animeIndex];
+      let title = currentAnime.title;
+      let anchorHref = currentAnime.url;
+      let imgSrc = currentAnime.images.webp.image_url;
+      let imgAlt = currentAnime.title + " image"; 
       return (
         <div>
           <p>{title}</p>
