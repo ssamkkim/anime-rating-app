@@ -51,13 +51,15 @@ const App = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const newRating = {
-      title: animeData[animeIndex].title,
-      rating: e.target.rating.value,
+    if(!(animeIndex + 1 === animeData.length)) {
+      const newRating = {
+        title: animeData[animeIndex].title,
+        rating: e.target.rating.value,
+      }
+      setAnimeRatings(animeRatings => [...animeRatings, newRating]);
+      handleNext();
+      displayAnime();
     }
-    setAnimeRatings(animeRatings => [...animeRatings, newRating]);
-    handleNext();
-    displayAnime();
   }
 
 
