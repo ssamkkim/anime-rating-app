@@ -23,11 +23,11 @@ const App = () => {
   const displayAnime = () => {
     if(animeData[animeIndex] === undefined) {
       return (
-        <h1>Loading...</h1>
+        <h3>Loading...</h3>
       )
     } else if(animeIndex + 1 === animeData.length) {
       return (
-        <h1>Finished!</h1>
+        <h3>Finished!</h3>
       )
     }
       else {
@@ -62,7 +62,7 @@ const App = () => {
 
 
   return (
-    <div>
+    <div id="app-container">
       <h2>Anime</h2>
       {/* <div id="anime-container">
         {animeData.map((n, i) => (
@@ -72,7 +72,9 @@ const App = () => {
           </div>
         ))}
       </div> */}
-      {displayAnime()}
+      <div id="anime-container">
+        {displayAnime()}
+      </div>
       <form onSubmit={handleSubmit} style={{display: 'inline'}}>
         <select name="rating" id="rating">
           <option value="10">10</option>
