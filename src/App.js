@@ -7,10 +7,11 @@ const App = () => {
   const [animeData, setAnimeData] = useState([]);
   const [animeIndex, setAnimeIndex] = useState(0);
   const [animeRatings, setAnimeRatings] = useState([]);
+  const [url, setUrl] = useState("https://api.jikan.moe/v4/top/anime?page=1");
 
   //fetch animeData
   const fetchAnimeData = () => {
-    fetch('https://api.jikan.moe/v4/anime')
+    fetch(url)
       .then(result => result.json())
       .then(data => setAnimeData(data.data))
       .catch(error => console.log(error));
@@ -51,7 +52,7 @@ const App = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if(!(animeIndex + 1 === animeData.length)) {
+    if(e.target.rating.value >= 1) {
       const newRating = {
         title: animeData[animeIndex].title,
         rating: e.target.rating.value,
@@ -59,13 +60,12 @@ const App = () => {
       setAnimeRatings(animeRatings => [...animeRatings, newRating]);
       handleNext();
       displayAnime();
-    }
+    } 
   }
-
 
   return (
     <div id="app-container">
-      <h2>Anime</h2>
+      <h2>My Anime Rating</h2>
       {/* <div id="anime-container">
         {animeData.map((n, i) => (
           <div key={i}>
@@ -78,7 +78,7 @@ const App = () => {
         {displayAnime()}
       </div>
       <form onSubmit={handleSubmit} style={{display: 'inline'}}>
-        <select name="rating" id="rating">
+        {/* <select name="rating" id="rating">
           <option value="10">10</option>
           <option value="9">9</option>
           <option value="8">8</option>
@@ -89,13 +89,14 @@ const App = () => {
           <option value="3">3</option>
           <option value="2">2</option>
           <option value="1">1</option>
-        </select>
+        </select> */}
+        <input type="number" name="rating" id="rating" min="1" max="10" step="0.1" required></input>
         <input type="submit" />
       </form>
       <button onClick={handleNext}>Haven't Watched</button>
       {animeRatings.map((n, i) => (
-        <div key={i}>
-          {n.title + " " + n.rating}
+        <div key={i} className="anime-ratings">
+          {n.title + " - " + n.rating}
         </div>
       ))}
     </div>
