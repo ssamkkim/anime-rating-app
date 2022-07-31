@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme, GlobalStyles } from './themes.js';
 
 const App = () => {
 
@@ -8,6 +10,7 @@ const App = () => {
   const [animeIndex, setAnimeIndex] = useState(0);
   const [animeRatings, setAnimeRatings] = useState([]);
   const [url, setUrl] = useState("https://api.jikan.moe/v4/top/anime?page=1");
+  const [theme, setTheme] = useState("light");
 
   //fetch animeData
   const fetchAnimeData = () => {
@@ -20,6 +23,12 @@ const App = () => {
   useEffect(() => {
     fetchAnimeData();
   }, []);
+
+  //toggle themes
+
+  const toggleTheme = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
 
   const displayAnime = () => {
     if(animeData[animeIndex] === undefined) {
@@ -64,42 +73,27 @@ const App = () => {
   }
 
   return (
-    <div id="app-container">
-      <h2>My Anime Rating</h2>
-      {/* <div id="anime-container">
-        {animeData.map((n, i) => (
-          <div key={i}>
-            <p>{n.title}</p>
-            <a href={n.url} target="_blank" rel="noreferrer"><img src={n.images.webp.image_url} alt={n.title + " image"} className="anime-image" /></a>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <div id="app-container">
+        <h2>My Anime Rating</h2>
+        <div id="anime-container">
+          {displayAnime()}
+        </div>
+        <form onSubmit={handleSubmit} style={{display: 'inline'}}>
+          <input type="number" name="rating" id="rating" min="1" max="10" step="0.1" required></input>
+          <input type="submit" />
+        </form>
+        <button onClick={handleNext}>Haven't Watched</button>
+        {animeRatings.map((n, i) => (
+          <div key={i} className="anime-ratings">
+            {n.title + " - " + n.rating}
           </div>
         ))}
-      </div> */}
-      <div id="anime-container">
-        {displayAnime()}
+        <button onClick={toggleTheme}>Change Theme</button>
       </div>
-      <form onSubmit={handleSubmit} style={{display: 'inline'}}>
-        {/* <select name="rating" id="rating">
-          <option value="10">10</option>
-          <option value="9">9</option>
-          <option value="8">8</option>
-          <option value="7">7</option>
-          <option value="6">6</option>
-          <option value="5">5</option>
-          <option value="4">4</option>
-          <option value="3">3</option>
-          <option value="2">2</option>
-          <option value="1">1</option>
-        </select> */}
-        <input type="number" name="rating" id="rating" min="1" max="10" step="0.1" required></input>
-        <input type="submit" />
-      </form>
-      <button onClick={handleNext}>Haven't Watched</button>
-      {animeRatings.map((n, i) => (
-        <div key={i} className="anime-ratings">
-          {n.title + " - " + n.rating}
-        </div>
-      ))}
-    </div>
+    </ThemeProvider>
+    
   );
 };
 
