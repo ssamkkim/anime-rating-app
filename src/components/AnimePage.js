@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import Navbar from './Navbar';
-import Loading from './Loading'
+import Loading from './Loading';
+import RatingModal from './RatingModal';
 
 const AnimePage = () => {
   const [animeData, setAnimeData] = useState();
@@ -37,11 +38,12 @@ const AnimePage = () => {
 
   const displayAnimeInfo = () => {
     return (
-      <div>
-        <h1>{animeData.title}</h1>
+      <div className="flex flex-col items-center text-center bg-white h-screen">
         <img src={animeData.images.webp.image_url} alt={animeData.title} />
+        <h1>{animeData.title}</h1>
+        <RatingModal />
         <div>
-          <h1>Information</h1>
+          <h1 className="bold">Information</h1>
           <p>{`Episodes: ${animeData.episodes}`}</p>
           <p>{`Status: ${animeData.status}`}</p>
           <p>{animeAiringDate()}</p>
