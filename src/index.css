@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.empty-icons {
+  display: flex !important;
+}
+.filled-icons {
+  display: -webkit-inline-box !important;
+}

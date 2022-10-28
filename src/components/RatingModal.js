@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { Rating } from 'react-simple-star-rating';
 import { AiOutlineClose } from 'react-icons/ai';
 
-const RatingModal = () => {
+import StarRating from './StarRating';
+
+const RatingModal = ({ setReviews }) => {
+  const [reviewData, setReviewData] = useState({ watchStatus: '', opinion: '', storyStars: 0, charactersStars: 0, animationStars: 0, soundStars: 0, vibeStars: 0 });
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -14,17 +16,24 @@ const RatingModal = () => {
     setIsOpen(false);
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    setIsOpen(false);
+  }
+
   return (
     <div>
       <button onClick={openModal}>Add Review</button>
       <Modal 
         isOpen={isOpen}
         onRequestClose={closeModal}
+        className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] rounded-3xl bg-pink-300 overflow-auto p-10 outline-none w-1/3 h-5/6"
       >
         <button onClick={closeModal} className="absolute right-0 top-0 p-4 text-xl"><AiOutlineClose /></button>
         <div className="flex flex-col text-center mt-5">
           <h1 className="text-3xl">Write a Review</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <p>Watch Status</p>
             <input type="radio" id="completed" name="watch_status" value="Completed" />
             <label for="completed">Completed</label>
@@ -42,7 +51,14 @@ const RatingModal = () => {
             <label for="mixed-opinion">Mixed Opinion</label>
             <input type="radio" id="would-not-recommend" name="opinion" value="Would Not Recommend" />
             <label for="would-not-recommend">Would Not Recommend</label>
-
+            <div>
+              <StarRating name="Story" />
+              <StarRating name="Characters" />
+              <StarRating name="Animation" />
+              <StarRating name="Sound" />
+              <StarRating name="Vibe" />
+            </div>
+            <input type="submit" />
           </form>
         </div>
       </Modal>

@@ -8,6 +8,7 @@ import RatingModal from './RatingModal';
 
 const AnimePage = () => {
   const [animeData, setAnimeData] = useState();
+  const [reviews, setReviews] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -41,7 +42,7 @@ const AnimePage = () => {
       <div className="flex flex-col items-center text-center bg-white h-screen">
         <img src={animeData.images.webp.image_url} alt={animeData.title} />
         <h1>{animeData.title}</h1>
-        <RatingModal />
+        <RatingModal setReviews={setReviews} />
         <div>
           <h1 className="bold">Information</h1>
           <p>{`Episodes: ${animeData.episodes}`}</p>
