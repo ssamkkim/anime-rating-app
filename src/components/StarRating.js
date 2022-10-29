@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Rating } from 'react-simple-star-rating';
-// import Rating from '@mui/material/Rating';
 
-const StarRating = ({ name }) => {
-  const [ratingValue, setRatingValue] = useState(0);
-
+const StarRating = ({ name, reviewData, setReviewData }) => {
   const handleRating = (rate) => {
-    setRatingValue(rate);
+    setReviewData({ ...reviewData, [`${name.toLowerCase()}Stars`]: rate });
   }
 
   return (
@@ -18,11 +15,6 @@ const StarRating = ({ name }) => {
         allowFraction={true}
         transition={true}
       />
-      {/* <Rating 
-        name={`${name}-rating`}
-        value={ratingValue}
-        onChange={(event, newValue) => {setRatingValue(newValue)}}
-      /> */}
     </div>
   )
 }
