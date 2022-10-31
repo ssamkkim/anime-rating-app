@@ -1,21 +1,21 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const UserSchema = mongoose.Schema({
   googleId: {
     type: String,
-    required: true
+    required: true,
   },
   userName: {
     type: String,
-    required: true
+    required: true,
   },
   image: {
     type: String,
   },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
-})
+    default: Date.now,
+  },
+});
 
-export default mongoose.model("User", UserSchema)
+export default mongoose.model("User", UserSchema);

@@ -1,62 +1,62 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const ReviewSchema = mongoose.Schema({
   creator: {
     type: String,
-    required: true
+    required: true,
   },
   watchStatus: {
     type: String,
-    required: true
+    required: true,
   },
   opinion: {
     type: String,
-    required: true
+    required: true,
   },
   storyStars: {
     type: Number,
-    required: true
+    required: true,
   },
   storyReview: {
     type: String,
-    required: true
+    required: true,
   },
   charactersStars: {
     type: Number,
-    required: true
+    required: true,
   },
   charactersReview: {
     type: String,
-    required: true
+    required: true,
   },
   animationStars: {
     type: Number,
-    required: true
+    required: true,
   },
   animationReview: {
     type: String,
-    required: true
+    required: true,
   },
   soundStars: {
     type: Number,
-    required: true
+    required: true,
   },
   soundReview: {
     type: String,
-    required: true
+    required: true,
   },
   vibeStars: {
     type: Number,
-    required: true
+    required: true,
   },
   vibeReview: {
     type: String,
-    required: true
+    required: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
-})
+    default: Date.now,
+  },
+});
 
-export default mongoose.model("Review", ReviewSchema)
+export default mongoose.model("Review", ReviewSchema);
