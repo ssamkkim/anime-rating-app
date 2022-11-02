@@ -1,5 +1,5 @@
-import React from "react";
-import { Rating } from "react-simple-star-rating";
+import React from 'react';
+import { Rating } from 'react-simple-star-rating';
 
 const StarRating = ({ name, reviewData, setReviewData }) => {
   const handleRating = (rate) => {

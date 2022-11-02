@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const ReviewSchema = mongoose.Schema({
   creator: {
@@ -59,4 +59,4 @@ const ReviewSchema = mongoose.Schema({
   },
 });
 
-export default mongoose.model("Review", ReviewSchema);
+export default mongoose.model('Review', ReviewSchema);

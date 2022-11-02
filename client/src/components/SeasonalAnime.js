@@ -1,8 +1,8 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import Loading from "./Loading";
+import Loading from './Loading';
 
 const SeasonalAnime = () => {
   const [seasonalAnimeList, setSeasonalAnimeList] = useState([]);
@@ -26,20 +26,20 @@ const SeasonalAnime = () => {
   };
 
   const displaySeasonalAnime = () => {
-    let tempSeasonalAnimeList = seasonalAnimeList.slice(0, 5);
+    let tempSeasonalAnimeList = seasonalAnimeList.slice(0, 8);
 
     return (
       <div className="flex flex-row mx-4 my-2">
         {tempSeasonalAnimeList.map((anime) => (
           <div className="p-2" key={anime.mal_id}>
             <img
-              className="rounded-lg aspect-auto"
+              className="rounded-lg w-40 h-56 aspect-[160/220] inline-block"
               src={anime.images.webp.image_url}
               alt={anime.title}
             />
             <Link to={`/anime/${anime.mal_id}`}>
-              <h2 className="break-words">{anime.title}</h2>
-              <h3>{anime.score}</h3>
+              <h2 className="break-words text-white">{anime.title}</h2>
+              <h3 className="text-white">{anime.score}</h3>
             </Link>
           </div>
         ))}

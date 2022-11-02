@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
-import Modal from "react-modal";
+import React, { useState } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
+import Modal from 'react-modal';
 
-import StarRating from "./StarRating";
+import StarRating from './StarRating';
 
 const RatingModal = ({ setReviews }) => {
   const [reviewData, setReviewData] = useState({
-    watchStatus: "",
-    opinion: "",
-    storyStars: "",
-    charactersStars: "",
-    animationStars: "",
-    soundStars: "",
-    vibeStars: "",
+    watchStatus: '',
+    opinion: '',
+    storyStars: '',
+    charactersStars: '',
+    animationStars: '',
+    soundStars: '',
+    vibeStars: '',
   });
   const [isOpen, setIsOpen] = useState(false);
 

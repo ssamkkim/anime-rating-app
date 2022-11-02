@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import Navbar from "./Navbar";
-import Loading from "./Loading";
-import RatingModal from "./RatingModal";
+import Loading from './Loading';
+import Navbar from './Navbar';
+import RatingModal from './RatingModal';
 
 const AnimePage = () => {
   const [animeData, setAnimeData] = useState();
@@ -27,26 +27,26 @@ const AnimePage = () => {
   };
 
   const animeAiringDate = () => {
-    const airingText = animeData.airing ? "Airing" : "Aired";
+    const airingText = animeData.airing ? 'Airing' : 'Aired';
     const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     const fromDate = `${monthNames[animeData.aired.prop.from.month - 1]} ${
       animeData.aired.prop.from.day
     }, ${animeData.aired.prop.from.year}`;
     const toDate = animeData.airing
-      ? "?"
+      ? '?'
       : `${monthNames[animeData.aired.prop.to.month - 1]} ${
           animeData.aired.prop.to.day
         }, ${animeData.aired.prop.to.year}`;

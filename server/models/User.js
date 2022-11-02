@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const UserSchema = mongoose.Schema({
   googleId: {
@@ -18,4 +18,4 @@ const UserSchema = mongoose.Schema({
   },
 });
 
-export default mongoose.model("User", UserSchema);
+export default mongoose.model('User', UserSchema);

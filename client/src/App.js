@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import Navbar from "./components/Navbar";
-import SeasonalAnime from "./components/SeasonalAnime";
+import Navbar from './components/Navbar';
+import SeasonalAnime from './components/SeasonalAnime';
 
 const App = () => {
   return (
-    <div>
+    <div className="mx-auto bg-black h-screen">
       <Navbar />
       <SeasonalAnime />
     </div>
