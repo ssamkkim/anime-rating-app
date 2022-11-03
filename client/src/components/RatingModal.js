@@ -31,8 +31,13 @@ const RatingModal = ({ setReviews }) => {
   };
 
   return (
-    <div>
-      <button onClick={openModal}>Add Review</button>
+    <div className="text-white">
+      <button
+        className="rounded-full font-semibold bg-red-600 hover:bg-red-600/90 px-6 h-10 mb-3"
+        onClick={openModal}
+      >
+        Add Review
+      </button>
       <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}

@@ -56,18 +56,21 @@ const AnimePage = () => {
 
   const displayAnimeInfo = () => {
     return (
-      <div className="flex flex-col items-center text-center bg-white h-screen">
+      <div className="flex flex-col items-center text-center text-white bg-black h-screen">
         <img src={animeData.images.webp.image_url} alt={animeData.title} />
-        <h1>{animeData.title}</h1>
+        <h1 className="">{animeData.title}</h1>
         <RatingModal setReviews={setReviews} />
-        <div>
-          <h1 className="bold">Information</h1>
-          <p>{`Episodes: ${animeData.episodes}`}</p>
-          <p>{`Status: ${animeData.status}`}</p>
-          <p>{animeAiringDate()}</p>
-          <p>{`Episode Duration: ${animeData.duration.substr(0, 6)}.`}</p>
-          <p>{`Animation Studio: ${animeData.studios[0].name}`}</p>
-          <p>
+        <div className="">
+          <h1 className=" bold">Information</h1>
+          <p className="">{`Episodes: ${animeData.episodes}`}</p>
+          <p className="">{`Status: ${animeData.status}`}</p>
+          <p className="">{animeAiringDate()}</p>
+          <p className="">{`Episode Duration: ${animeData.duration.substr(
+            0,
+            6
+          )}.`}</p>
+          <p className="">{`Animation Studio: ${animeData.studios[0].name}`}</p>
+          <p className="">
             {animeData.demographics === undefined
               ? `Demographic: ${animeData.demographics[0].name}`
               : null}

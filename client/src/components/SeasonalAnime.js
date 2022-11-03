@@ -12,7 +12,7 @@ const SeasonalAnime = () => {
 
   useEffect(() => {
     getSeasonalAnime();
-  }, [seasonalAnimeList]);
+  }, []);
 
   const getSeasonalAnime = () => {
     axios
@@ -31,15 +31,20 @@ const SeasonalAnime = () => {
     return (
       <div className="flex flex-row mx-4 my-2">
         {tempSeasonalAnimeList.map((anime) => (
-          <div className="p-2" key={anime.mal_id}>
-            <img
-              className="rounded-lg w-40 h-56 aspect-[160/220] inline-block"
-              src={anime.images.webp.image_url}
-              alt={anime.title}
-            />
+          <div
+            className="p-2 w-44 text-white hover:text-blue-400"
+            key={anime.mal_id}
+          >
             <Link to={`/anime/${anime.mal_id}`}>
-              <h2 className="break-words text-white">{anime.title}</h2>
-              <h3 className="text-white">{anime.score}</h3>
+              <img
+                className="rounded-lg h-56 aspect-[176/224] inline-block hover:brightness-110 hover:opacity-85"
+                src={anime.images.webp.image_url}
+                alt={anime.title}
+              />
+              <div className="hover:underline">
+                <h2 className="break-words">{anime.title}</h2>
+                <h3 className="text-sm">⭐{anime.score}</h3>
+              </div>
             </Link>
           </div>
         ))}
