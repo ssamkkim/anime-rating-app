@@ -4,33 +4,30 @@ import { Link } from 'react-router-dom';
 
 import Loading from './Loading';
 
-const SeasonalAnime = () => {
-  const [seasonalAnimeList, setSeasonalAnimeList] = useState([]);
+const HighestRated = () => {
+  const [highestRatedAnimeList, setHighestRatedAnimeList] = useState([]);
 
-  let pageNum = 1;
-  const url = `https://api.jikan.moe/v4/seasons/now?page=${pageNum}`;
+  const url = `https://api.jikan.moe/v4/top/anime?limit=3}`;
 
   useEffect(() => {
-    getSeasonalAnime();
+    getHighestRatedAnime();
   }, []);
 
-  const getSeasonalAnime = () => {
+  const getHighestRatedAnime = () => {
     axios
       .get(url)
       .then((response) => {
-        setSeasonalAnimeList(response.data.data);
+        setHighestRatedAnimeList(response.data.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const displaySeasonalAnime = () => {
-    let tempSeasonalAnimeList = seasonalAnimeList.slice(0, 3);
-
+  const displayHighestRatedAnime = () => {
     return (
       <div className="flex flex-col mx-4 my-2">
-        {tempSeasonalAnimeList.map((anime) => (
+        {highestRatedAnimeList.map((anime) => (
           <div
             className="p-2 text-white hover:text-blue-400"
             key={anime.mal_id}
@@ -55,18 +52,18 @@ const SeasonalAnime = () => {
   return (
     <div>
       <div className="flex justify-between w-80 items-center">
-        <h1 className="mx-4 text-white text-lg font-bold">Currently Airing</h1>
+        <h1 className="mx-4 text-white text-lg font-bold">Highest Rated</h1>
         <Link className="mx-4 text-blue-400 hover:text-blue-500 hover:underline text-md">
           See All
         </Link>
       </div>
-      {seasonalAnimeList[0] === undefined ? (
+      {highestRatedAnimeList[0] === undefined ? (
         <Loading />
       ) : (
-        displaySeasonalAnime()
+        displayHighestRatedAnime()
       )}
     </div>
   );
 };
 
-export default SeasonalAnime;
+export default HighestRated;
