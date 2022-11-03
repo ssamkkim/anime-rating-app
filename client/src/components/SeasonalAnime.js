@@ -26,22 +26,22 @@ const SeasonalAnime = () => {
   };
 
   const displaySeasonalAnime = () => {
-    let tempSeasonalAnimeList = seasonalAnimeList.slice(0, 8);
+    let tempSeasonalAnimeList = seasonalAnimeList.slice(0, 5);
 
     return (
-      <div className="flex flex-row mx-4 my-2">
+      <div className="flex flex-col mx-4 my-2">
         {tempSeasonalAnimeList.map((anime) => (
           <div
-            className="p-2 w-44 text-white hover:text-blue-400"
+            className="p-2 text-white hover:text-blue-400"
             key={anime.mal_id}
           >
-            <Link to={`/anime/${anime.mal_id}`}>
+            <Link className="flex h-[70px]" to={`/anime/${anime.mal_id}`}>
               <img
-                className="rounded-lg h-56 aspect-[176/224] inline-block hover:brightness-110 hover:opacity-85"
+                className="mr-3 rounded-lg w-[50px] aspect-[176/224] inline-block hover:brightness-110 hover:opacity-85"
                 src={anime.images.webp.image_url}
                 alt={anime.title}
               />
-              <div className="hover:underline">
+              <div className="w-48 flex flex-col hover:underline">
                 <h2 className="break-words">{anime.title}</h2>
                 <h3 className="text-sm">⭐{anime.score}</h3>
               </div>
@@ -54,7 +54,7 @@ const SeasonalAnime = () => {
 
   return (
     <div>
-      <h1>CURRENT ANIMES</h1>
+      <h1 className="mx-4 text-white text-lg font-bold">Currently Airing</h1>
       {seasonalAnimeList[0] === undefined ? (
         <Loading />
       ) : (
