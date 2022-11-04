@@ -5,7 +5,7 @@ import SeasonalAnime from './SeasonalAnime';
 
 const Sidebar = () => {
   return (
-    <div>
+    <div className="w-80">
       <HighestRated />
       <SeasonalAnime />
     </div>

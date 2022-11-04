@@ -7,7 +7,7 @@ import Loading from './Loading';
 const HighestRated = () => {
   const [highestRatedAnimeList, setHighestRatedAnimeList] = useState([]);
 
-  const url = `https://api.jikan.moe/v4/top/anime?limit=3}`;
+  const url = `https://api.jikan.moe/v4/top/anime?limit=3`;
 
   useEffect(() => {
     getHighestRatedAnime();

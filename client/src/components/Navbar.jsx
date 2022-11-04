@@ -13,9 +13,9 @@ const Navbar = () => {
       </Link>
       <SearchBar />
       <a href="/auth/google">
-        <buton className="text-white font-bold text-lg">
+        <button className="text-white font-bold text-lg">
           Login With Google
-        </buton>
+        </button>
       </a>
     </div>
   );
